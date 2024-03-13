@@ -15,7 +15,7 @@ import {
     ArrowCounterclockwiseRegular
 } from '@fluentui/react-icons';
 
-import { formatter } from '../util/investment'; 
+import { formatter } from '../util/Investment'; 
 import { AnnualDataItem } from "./interfaces";
 
 interface Column {

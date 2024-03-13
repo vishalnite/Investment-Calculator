@@ -24,7 +24,7 @@ import type {
 } from '@fluentui/react-components';
 
 import TableUI from './TableUI';
-import { calculateInvestmentResults } from '../util/investment';
+import { calculateInvestmentResults } from '../util/Investment';
 import { AnnualDataItem } from './interfaces';
 
 const useStyles = makeStyles({
