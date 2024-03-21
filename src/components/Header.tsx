@@ -17,7 +17,8 @@ const useStyles = makeStyles({
         ...shorthands.gap("20px")
     },
     headerImage: {
-        width: "35rem"
+        width: "35rem",
+        fit: "contain"
     },
     headerText: {
         color: tokens.colorPaletteBlueForeground2,

@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   TableBody,
   TableCell,
@@ -15,17 +16,12 @@ import {
     ArrowCounterclockwiseRegular
 } from '@fluentui/react-icons';
 
-import { formatter } from '../util/Investment'; 
-import { AnnualDataItem } from "./interfaces";
+import { calculateInvestmentResults, formatter } from '../util/Investment'; 
+import { InvestmentValues } from "./context";
 
 interface Column {
     columnKey: string;
     label: string;
-}
-
-interface Props {
-    annualData: AnnualDataItem[];
-    setShowTable: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const columns: Column[] = [
@@ -61,12 +57,18 @@ const useStyles = makeStyles({
     },
 })
 
-const handleClick = (setShowTable: React.Dispatch<React.SetStateAction<boolean>>) => {
-    setShowTable(showTable => !showTable);
+const handleClick = (setShowTable: any, inputValues: any) => {
+    setShowTable((prevState: any) => !prevState)
+    inputValues.initialInvestment = 0;
+    inputValues.annualInvestment = 0;
+    inputValues.expectedReturn = 0;
+    inputValues.duration = 0;
 }
 
-export default function TableUI({ annualData, setShowTable }: Props) {
+export default function TableUI({ setShowTable }: any) {
   const classes = useStyles();
+  const inputValues = useContext(InvestmentValues);
+  const annualData = calculateInvestmentResults(inputValues);
 
   return (
     <div className={classes.tableContainer}>
@@ -81,7 +83,7 @@ export default function TableUI({ annualData, setShowTable }: Props) {
             </TableRow>
         </TableHeader>
         <TableBody>
-            {annualData.map((data: AnnualDataItem) => (
+            {annualData.map((data: any) => (
             <TableRow key={data.year}>
                 <TableCell>
                 {data.year}
@@ -104,7 +106,7 @@ export default function TableUI({ annualData, setShowTable }: Props) {
             <CompoundButton
                 className={classes.button}
                 icon={<ArrowCounterclockwiseRegular />}
-                onClick={() => handleClick(setShowTable)}
+                onClick={() => handleClick(setShowTable, inputValues)}
             >
                 Go Back
             </CompoundButton>
