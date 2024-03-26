@@ -16,7 +16,7 @@ import {
     ArrowCounterclockwiseRegular
 } from '@fluentui/react-icons';
 
-import { calculateInvestmentResults, formatter } from '../util/Investment'; 
+import { calculateInvestmentResults, formatter } from '../util/Investment.ts'; 
 import { InvestmentValues } from "./context";
 
 interface Column {
